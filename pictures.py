@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import urllib2
+import urllib
 import urlparse
 import os.path
 import logging
@@ -29,6 +30,7 @@ class PictureDownloader():
         """ downloads pictures for loaded urls """
         for line in self.urls:
             path = urlparse.urlsplit(line).path
+            path = urllib.unquote(path)
             filename = os.path.basename(path)
             try:
                 urlfile = urllib2.urlopen(line)
